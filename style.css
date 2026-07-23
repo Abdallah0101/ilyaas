@@ -479,6 +479,52 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;line-height:1.15;letter-spacing
   font-family:var(--disp);letter-spacing:.06em;color:var(--paper);font-size:.95rem;
 }
 
+/* ───────── WHATSAPP FLOAT ───────── */
+.wa{position:fixed;right:22px;bottom:22px;z-index:60;display:flex;flex-direction:column;align-items:flex-end;gap:14px}
+.wa__btn{
+  width:60px;height:60px;border-radius:50%;
+  background:#25D366;color:#fff;
+  display:grid;place-items:center;
+  box-shadow:0 12px 30px -8px rgba(37,211,102,.65),0 4px 12px rgba(0,0,0,.25);
+  transition:transform .3s ease,box-shadow .3s ease;
+  animation:waPulse 2.6s ease-out infinite;
+}
+.wa__btn:hover{transform:scale(1.08);animation:none}
+@keyframes waPulse{
+  0%{box-shadow:0 12px 30px -8px rgba(37,211,102,.65),0 0 0 0 rgba(37,211,102,.45)}
+  70%{box-shadow:0 12px 30px -8px rgba(37,211,102,.65),0 0 0 18px rgba(37,211,102,0)}
+  100%{box-shadow:0 12px 30px -8px rgba(37,211,102,.65),0 0 0 0 rgba(37,211,102,0)}
+}
+@media (prefers-reduced-motion:reduce){.wa__btn{animation:none}}
+.wa__bubble{
+  width:290px;background:#fff;border-radius:16px 16px 4px 16px;
+  padding:20px 20px 18px;
+  box-shadow:0 24px 60px -20px rgba(15,51,42,.45);
+  border:1px solid rgba(190,147,51,.25);
+  border-top:4px solid #25D366;
+  opacity:0;transform:translateY(14px) scale(.96);
+  pointer-events:none;
+  transition:opacity .4s ease,transform .4s cubic-bezier(.2,.7,.2,1);
+  position:relative;
+}
+.wa__bubble.is-visible{opacity:1;transform:none;pointer-events:auto}
+.wa__close{
+  position:absolute;top:8px;right:12px;
+  background:none;border:0;cursor:pointer;
+  font-size:1.3rem;line-height:1;color:var(--text-faint);
+}
+.wa__close:hover{color:var(--madder)}
+.wa__hi{font-family:var(--disp);color:var(--ink);font-size:1.02rem;margin-bottom:6px}
+.wa__msg{font-size:.86rem;color:var(--text-faint);margin-bottom:14px;line-height:1.55}
+.wa__start{
+  display:block;text-align:center;
+  background:#25D366;color:#fff;
+  font-family:var(--disp);font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:11px 14px;border-radius:999px;
+  transition:background .25s,transform .25s;
+}
+.wa__start:hover{background:#1eb857;transform:translateY(-1px)}
+
 /* ───────── RESPONSIVE ───────── */
 .about__ctas{display:flex;gap:14px;flex-wrap:wrap}
 
@@ -496,6 +542,9 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;line-height:1.15;letter-spacing
   .why__grid{grid-template-columns:1fr}
   .langs__list li{padding:10px 22px}
   .langs__list li:nth-child(3){border-left:0}
+  .wa{right:16px;bottom:16px}
+  .wa__btn{width:54px;height:54px}
+  .wa__bubble{width:min(290px,calc(100vw - 32px))}
 }
 @media (max-width:760px){
   .nav__burger{display:block}
