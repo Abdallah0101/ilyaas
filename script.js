@@ -92,7 +92,7 @@ form.addEventListener('submit', e => {
     `Assalamu alaikum,\n\nMy name is ${name} and I would like a free trial lesson.\nCourse: ${course}\n\n${msg}\n\nMy email: ${email}`
   );
   window.location.href =
-    `mailto:contact@abuilyaasacademy.com?subject=${encodeURIComponent('Free trial request from ' + name)}&body=${body}`;
+    `mailto:ustadhabuilyaas@gmail.com?subject=${encodeURIComponent('Free trial request from ' + name)}&body=${body}`;
   note.textContent = `JazakAllahu khayran, ${name}! Your email app is opening, just press send.`;
   note.style.color = '#6F7D4F';
   form.reset();
@@ -100,3 +100,19 @@ form.addEventListener('submit', e => {
 
 // ── Footer year ──
 document.getElementById('year').textContent = new Date().getFullYear();
+
+
+// ── WhatsApp float: show invitation bubble once, after a short delay ──
+const waBubble = document.getElementById('waBubble');
+const waClose = document.getElementById('waClose');
+let waDismissed = false;
+setTimeout(() => {
+  if (!waDismissed) waBubble.classList.add('is-visible');
+}, 5000);
+waClose.addEventListener('click', () => {
+  waDismissed = true;
+  waBubble.classList.remove('is-visible');
+});
+document.getElementById('waBtn').addEventListener('click', () => {
+  waBubble.classList.remove('is-visible');
+});
